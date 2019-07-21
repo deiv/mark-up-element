@@ -1,0 +1,28 @@
+{
+  "name": "@deiv/mark-up",
+  "version": "1.0.0",
+  "author": "David Suárez <david.sephirot@gmail.com>",
+  "main": "bundle/mark-up-element.js",
+  "module": "src/mark-up-element.js",
+  "license": "GPL-3.0",
+  "keywords": [
+    "webcomponent",
+    "lit-element",
+    "markdown"
+  ],
+  "scripts": {
+    "start": "polymer serve",
+    "build": "rimraf bundle && rollup -c",
+    "clean": "rimraf bundle"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.0"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.1.0",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.17.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
+}
