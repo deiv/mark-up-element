@@ -27,8 +27,12 @@
         <h3>mark-up-element: Markdown viewer</h3>
         <demo-snippet>
             <template>
-                <mark-up-element>
+                <mark-up-element id="viewer">
                 </mark-up-element>
+
+                <script>
+                    document.getElementById('viewer').value = "# A Header\nA paragraph\n## A level 2 heading";
+                </script>
             </template>
         </demo-snippet>
 

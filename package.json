@@ -16,7 +16,8 @@
     "clean": "rimraf bundle"
   },
   "dependencies": {
-    "lit-element": "^2.2.0"
+    "lit-element": "^2.2.0",
+    "markdown-it": "^9.0.1"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",

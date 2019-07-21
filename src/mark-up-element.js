@@ -27,13 +27,17 @@
  */
 
 import { LitElement, html } from 'lit-element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+
+import { MarkdownRenderer } from './markdown-renderer';
 
 export class MarkUpElement extends LitElement {
 
     static get properties() {
         return {
-            text: {
+            value: {
                 type: String,
+                reflect: false,
                 value: ""
             }
         }
@@ -45,28 +49,41 @@ export class MarkUpElement extends LitElement {
         ];
     }
 
+    set value(val) {
+        let oldValue = this._value;
+
+        this._value = html`${unsafeHTML(this.renderer.render(val))}`;
+
+        this.requestUpdate('value', oldValue);
+    }
+
+    get value() {
+        return this._value;
+    }
+
     constructor() {
         super();
+
+        this._value = "";
+        this.renderer = new MarkdownRenderer();
     }
 
     render() {
         return html`
             <style>
-                #container {
+                #content-viewer {
                     overflow: hidden;
-                    clear: both;
-                }
-                
+                } 
             </style>
             
-            <div id="editorContainer">
-            
+            <div id="content-viewer" class="markdown-contents">
+                ${this._value}
             </div>
         `;
     }
 
     firstUpdated() {
-        const editorDiv = this.shadowRoot.getElementById('editorContainer');
+        const viewerDiv = this.shadowRoot.getElementById('content-viewer');
 
     }
 
