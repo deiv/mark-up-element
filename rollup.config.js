@@ -25,8 +25,9 @@ export default [{
     },{
         input: ['src/mark-up-element.js'],
         output: {
-            file: 'bundle//mark-up-element.js',
-            format: 'es',
+            file: 'bundle/mark-up-element.js',
+            format: 'umd',
+            name: 'mark-up-element',
             sourcemap: true
         },
         plugins: [
@@ -36,7 +37,8 @@ export default [{
         input: ['src/mark-up-editor-element.js'],
         output: {
             file: 'bundle/mark-up-editor-element.js',
-            format: 'es',
+            format: 'umd',
+            name: 'mark-up-editor-element',
             sourcemap: true
         },
         plugins: [
