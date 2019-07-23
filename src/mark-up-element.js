@@ -26,7 +26,7 @@
  *
  */
 
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { SharedStyles} from "./shared-styles";
@@ -36,6 +36,16 @@ import { default as Chart } from './esm-bundle/chartjs-bundle.js';
 
 
 export class MarkUpElement extends LitElement {
+
+    static get elementStyles() {
+        return css`
+            :host {
+                display: block;
+                overflow: auto;
+                height: var(--mark-up-element-preview-height);
+            }
+        `;
+    }
 
     static get properties() {
         return {
@@ -49,7 +59,8 @@ export class MarkUpElement extends LitElement {
 
     static get styles() {
         return [
-            SharedStyles
+            SharedStyles,
+            this.elementStyles
         ];
     }
 
@@ -68,19 +79,13 @@ export class MarkUpElement extends LitElement {
     constructor() {
         super();
 
-        this._value = "";
+        this._value = null;
         this.renderer = new MarkdownRenderer();
     }
 
     render() {
         return html`
             <link href="../node_modules/chart.js/dist/Chart.css" rel="stylesheet" />
-
-            <style>
-                #content-viewer {
-                    overflow: hidden;
-                } 
-            </style>
             
             <div id="content-viewer" class="markdown-contents">
                 ${this._value}
