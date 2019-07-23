@@ -16,14 +16,30 @@
     "clean": "rimraf bundle"
   },
   "dependencies": {
+    "chart.js": "^2.8.0",
     "lit-element": "^2.2.0",
-    "markdown-it": "^9.0.1"
+    "markdown-it": "^9.0.1",
+    "markdown-it-abbr": "^1.0.4",
+    "markdown-it-anchor": "https://github.com/valeriangalliat/markdown-it-anchor",
+    "markdown-it-center-text": "^1.0.4",
+    "markdown-it-chart": "^0.2.0",
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-footnote": "^3.0.2",
+    "markdown-it-imsize": "^2.0.1",
+    "markdown-it-mark": "^2.0.0",
+    "markdown-it-pdf": "^1.0.0",
+    "markdown-it-plantuml": "^1.4.1",
+    "markdown-it-regexp": "^0.4.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-task-list": "^0.1.2",
+    "markdown-it-toc-done-right": "https://github.com/nagaozen/markdown-it-toc-done-right"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "rimraf": "^2.6.3",
     "rollup": "^1.17.0",
+    "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0"
   }
 }

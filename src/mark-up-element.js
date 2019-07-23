@@ -29,7 +29,11 @@
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
+import { SharedStyles} from "./shared-styles";
 import { MarkdownRenderer } from './markdown-renderer';
+
+import { default as Chart } from './esm-bundle/chartjs-bundle.js';
+
 
 export class MarkUpElement extends LitElement {
 
@@ -45,7 +49,7 @@ export class MarkUpElement extends LitElement {
 
     static get styles() {
         return [
-            /*SharedStyles*/
+            SharedStyles
         ];
     }
 
@@ -70,6 +74,8 @@ export class MarkUpElement extends LitElement {
 
     render() {
         return html`
+            <link href="../node_modules/chart.js/dist/Chart.css" rel="stylesheet" />
+
             <style>
                 #content-viewer {
                     overflow: hidden;
@@ -83,10 +89,44 @@ export class MarkUpElement extends LitElement {
     }
 
     firstUpdated() {
-        const viewerDiv = this.shadowRoot.getElementById('content-viewer');
-
+        this.configurePreviewObserver();
     }
 
+    configurePreviewObserver() {
+
+        const previewElement = this.shadowRoot.getElementById('content-viewer');
+        const _this = this;
+        const config = {
+            attributes: false,
+            subtree: false,
+            childList: true
+        };
+
+        const callback = function(mutationsList, observer) {
+            for(var mutation of mutationsList) {
+                if (mutation.type == 'childList') {
+                    _this.updateCharts();
+
+                    /* something changed, stop looping */
+                    break;
+                }
+            }
+        };
+
+        const observer = new MutationObserver(callback);
+        observer.observe(previewElement, config);
+    }
+
+    updateCharts() {
+        const charts = this.shadowRoot.querySelectorAll('.chartjs');
+
+        for(var chart of charts) {
+            new Chart(
+                chart.getContext('2d'),
+                JSON.parse(chart.innerHTML)
+            );
+        }
+    }
 }
 
 window.customElements.define('mark-up-element', MarkUpElement);

@@ -3,3 +3,5 @@ yarn.lock
 
 .idea
 *.iml
+
+src/esm-bundle/
