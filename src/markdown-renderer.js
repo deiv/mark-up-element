@@ -104,7 +104,7 @@ export class MarkdownRenderer {
         });
         this.md.use( markdownItPlantuml, {
             openMarker: '@startmindmap',
-            closeMarker: 'endmindmap',
+            closeMarker: '@endmindmap',
             diagramName: 'mindmap',
             imageFormat: 'svg'
         });
