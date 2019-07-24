@@ -279,7 +279,7 @@ export const SharedStyles = css`
     border: 0;
     list-style: none;
     padding-left: 22px;
-    margin-left: -22px;
+    margin-left: -18px; /*-22px;*/
 }
 
 .markdown-contents .task-list-item:before {

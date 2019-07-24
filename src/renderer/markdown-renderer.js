@@ -28,7 +28,7 @@
 
 import 'markdown-it/dist/markdown-it.js';
 
-import { default as mdTaskList } from 'markdown-it-task-list/src/index.js';
+import { default as mdTaskList } from './plugins/markdown-it-tasks-list.js';
 import { default as mdAnchor } from 'markdown-it-anchor/index.js';
 import { default as mdCharts } from 'markdown-it-chart/src/index.js';
 import { default as mdToc } from 'markdown-it-toc-done-right/index.js';
@@ -43,7 +43,7 @@ import 'markdown-it-sup/dist/markdown-it-sup.js';
 /*
  * esm generated
  */
-import { default as markdownItPlantuml } from './esm-bundle/markdown-it-plantuml-bundle.js';
+import { default as markdownItPlantuml } from '../esm-bundle/markdown-it-plantuml-bundle.js';
 
 /*import mdRegex        from 'markdown-it-regexp/index.js';
 import mdPdf          from 'markdown-it-pdf/index.js';
