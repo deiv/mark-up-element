@@ -53,13 +53,13 @@ export class MarkUpEditorElement extends LitElement {
             codemirror-editor-element {
                 width: 49%;
                 float: left;
-                --mark-up-codemirror-element-height: 100%;
+                --mark-up-codemirror-element-height: var(--mark-up-editor-element-height);
             }
             
             mark-up-element {
                 width: 49%;
                 float: right;
-                --mark-up-element-preview-height: 100%;
+                --mark-up-element-preview-height: var(--mark-up-editor-element-height);
             }
         `;
     }
