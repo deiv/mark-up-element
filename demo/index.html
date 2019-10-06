@@ -15,9 +15,11 @@
 
     <script type="module" src="../src/mark-up-element.js"></script>
     <script type="module" src="../src/mark-up-editor-element.js"></script>
+    <script type="module" src="../src/codemirror-editor-element.js"></script>
 
     <custom-style>
         <style is="custom-style" include="demo-pages-shared-styles">
+
         </style>
     </custom-style>
 </head>
@@ -31,7 +33,7 @@
                 </mark-up-element>
 
                 <script>
-                    document.getElementById('viewer').value = "# A Header\nA paragraph\n## A level 2 heading";
+                    document.getElementById('viewer').content = "# A Header\nA paragraph\n## A level 2 heading";
                 </script>
             </template>
         </demo-snippet>
@@ -41,6 +43,14 @@
             <template>
                 <mark-up-editor-element>
                 </mark-up-editor-element>
+            </template>
+        </demo-snippet>
+
+        <h3>codemirror-editor-element</h3>
+        <demo-snippet>
+            <template>
+                <codemirror-editor-element>
+                </codemirror-editor-element>
             </template>
         </demo-snippet>
     </div>

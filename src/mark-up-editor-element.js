@@ -25,48 +25,70 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 
+import './codemirror-editor-element.js'
+import './mark-up-element.js';
+import {SharedStyles} from "./shared-styles";
 
 export class MarkUpEditorElement extends LitElement {
 
     static get properties() {
         return {
-            text: {
+            content: {
                 type: String,
+                reflect: false,
+                attribute: false,
                 value: ""
             }
         }
     }
 
+    static get elementStyles() {
+        return css`
+            #editor-container {
+                overflow: hidden;
+            }
+            
+            codemirror-editor-element {
+                width: 49%;
+                float: left;
+                --mark-up-codemirror-element-height: 100%;
+            }
+            
+            mark-up-element {
+                width: 49%;
+                float: right;
+                --mark-up-element-preview-height: 100%;
+            }
+        `;
+    }
+
     static get styles() {
         return [
-            /*SharedStyles*/
+            this.elementStyles
         ];
     }
 
     constructor() {
         super();
+
+        this.viewer = null;
     }
 
     render() {
         return html`
-
-            <style>
-                #container {
-                    overflow: hidden;
-                    clear: both;
-                }
-            </style>
-            
-            <div id="editorContainer">
-            
+            <div id="editor-container">
+                <codemirror-editor-element 
+                    @content-change="${(e) => { this.handleEditorContentChange(e) }}">
+                </codemirror-editor-element>
+                <mark-up-element></mark-up-element>
             </div>
         `;
     }
 
     firstUpdated() {
-        const editorDiv = this.shadowRoot.getElementById('editorContainer');
+        this.viewer = this.shadowRoot.querySelector('mark-up-element');
 
         this.initToolBar(this.editor);
     }
@@ -75,6 +97,9 @@ export class MarkUpEditorElement extends LitElement {
 
     }
 
+    handleEditorContentChange(e) {
+        this.viewer.content = e.detail.content;
+    }
 }
 
 window.customElements.define('mark-up-editor-element', MarkUpEditorElement);

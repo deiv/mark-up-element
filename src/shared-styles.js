@@ -31,67 +31,105 @@ import { css } from 'lit-element';
 export const SharedStyles = css`
 @charset "UTF-8";
 
-.markdown-contents a {
-    color: #0366d6;
-    text-decoration: none;
-}
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-.markdown-contents a:hover {
+  a,
+  a:visited {
     text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 
-.markdown-contents a {
-    background-color: transparent;
-}
 
-.markdown-contents a:active,
-.markdown-contents a:hover {
-    outline-width: 0;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,300);
 
-.markdown-contents h1,
-.markdown-contents h2 {
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: .3em;
-}
-
-
-/* markdown-it-center-text */
-.markdown-contents .text-align-center {
-    text-align: center;
-}
-
-
-/* */
-
-
-.markdown-contents *:not(table) {
+/*.markdown-contents *:not(table) {
     line-height: 160%;
     box-sizing: content-box;
+}*/
+
+/*
+ * Tipografia
+ */
+ 
+.markdown-contents {
+  font-size: 10px;
 }
 
-.markdown-contents i,
-.markdown-contents cite,
-.markdown-contents em,
-.markdown-contents var,
-.markdown-contents address,
-.markdown-contents dfn {
-    font-style: italic;
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  .markdown-contents {
+    font-size: 13px;
+  }
 }
 
-.markdown-contents strong {
-    font-weight: bold;
+@media screen and (min-width: 48rem) {
+  .markdown-contents {
+    font-size: 14px;
+  }
 }
 
-.markdown-contents p {
-    margin: 10px 0;
-    color: #555;
+.markdown-contents {
+  line-height: 1.85;
+  color: #444;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: 300;
 }
 
-.markdown-contents > h1:first-of-type,
-.markdown-contents > div > div:first-of-type h1 {
-    margin-top: 14px;
-}
+
+/*
+ * Headers
+ */
 
 .markdown-contents h1,
 .markdown-contents h2,
@@ -100,48 +138,70 @@ export const SharedStyles = css`
     font-weight: bold;
 }
 
+.markdown-contents h1,
+.markdown-contents h2,
+.markdown-contents h3,
+.markdown-contents h4 {
+  margin: 0 0 .5em;
+  line-height: 1.42;
+}
+
 .markdown-contents h1 {
-    font-size: 1.6rem;
-    line-height: 28px;
-    /*border-bottom: 3px double #999;*/
-    margin: 52px 0 15px 0;
-    padding-bottom: 7px;
-    color: #000;
+  font-size: 3.392em; /*3.998em;*/
+  border-bottom: 1px solid #bababa;
 }
 
 .markdown-contents h2 {
-    font-size: 1.3rem;
-    line-height: 23px;
-    border-bottom: 1px solid #dbdbdb;
-    margin: 30px 0 13px 0;
-    padding-bottom: 7px;
-    color: #333;
+  font-size: 2.827em;
+  border-bottom: 1px solid #dbdbdb;
 }
 
-.markdown-contents h3,
+.markdown-contents h3 {
+  font-size: 1.999em;
+  border-bottom: 1px solid #eaecef;
+}
+
 .markdown-contents h4 {
-    font-size: 1.2rem;
-    line-height: 18px;
-    margin: 20px 0 2px;
-    color: #333;
+  font-size: 1.414em;
 }
 
-.markdown-contents h5,
+.markdown-contents h5 {
+  font-size: 1.121em;
+}
+
 .markdown-contents h6 {
-    font-size: 1rem;
-    line-height: 17px;
-    margin: 10px 0 -4px;
-    color: #333;
+  font-size: .88em;
+}
+
+
+/*
+ * Block
+ */
+
+/* https://github.com/mrmrs/fluidity */
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
+  max-width: 100%;
+}
+
+.markdown-contents p {
+  font-size: 1em;
+  margin-bottom: 1.3rem;
+  color: #777;
 }
 
 .markdown-contents blockquote {
-    margin: 15px 0;
-}
-
-.markdown-contents blockquote {
-    border-left: 4px solid #dddddd;
-    padding: 0 15px;
-    color: #777777;
+  margin: 0;
+  font-style: italic;
+  padding: 1.33em;
+  text-align: left;
+  border-left: 4px solid #dddddd;
+  color: #777777;
 }
 
 .markdown-contents blockquote > :first-child {
@@ -160,24 +220,23 @@ export const SharedStyles = css`
 }
 
 .markdown-contents pre {
-    margin: 2px 0 8px;
-    padding: 18px;
+    padding: 1rem;
+    text-align: left;
     background-color: #f5f7f8;
+    border-left: 10px solid deeppink;
 }
 
 .markdown-contents code {
-    color: #c1788b;
-    padding: 4px 4px 2px 0;
     letter-spacing: -0.3px;
 }
 
 .markdown-contents pre code {
     padding: 0;
-    color: inherit;
     white-space: pre-wrap;
     background-color: transparent;
 }
 
+/* TODO; ??? */
 .markdown-contents pre.addon {
     border: 1px solid #e8ebed;
     background-color: #fff;
@@ -260,21 +319,6 @@ export const SharedStyles = css`
     margin: 16px 0;
 }
 
-/*.markdown-contents a {
-    text-decoration: underline;
-    color: #5286bc;
-}
-
-.markdown-contents a:hover {
-    color: #007cff;
-}*/
-
-.markdown-contents {
-    font-size: 13px; /* 1 rem */
-    margin: 0;
-    padding: 0;
-}
-
 .markdown-contents .task-list-item {
     border: 0;
     list-style: none;
@@ -313,4 +357,53 @@ export const SharedStyles = css`
     line-height: 160%;
     position: absolute;
 }
+ 
+
+/*
+ * Inline
+ */
+
+.markdown-contents a,
+.markdown-contents a:visited {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.markdown-contents a:hover,
+.markdown-contents a:focus,
+.markdown-contents a:active {
+  color: #2980b9;
+}
+
+.markdown-contents a:hover {
+    text-decoration: underline;
+}
+
+.markdown-contents i,
+.markdown-contents cite,
+.markdown-contents em,
+.markdown-contents var,
+.markdown-contents address,
+.markdown-contents dfn {
+    font-style: italic;
+}
+
+.markdown-contents small {
+  font-size: .707em;
+}
+
+.markdown-contents strong {
+    font-weight: bold;
+}
+
+
+/*
+ * Semantic classes
+ */
+
+/* for markdown-it-center-text */
+.markdown-contents .text-align-center {
+    text-align: center;
+}
+
 `;

@@ -44,6 +44,7 @@ import 'markdown-it-sup/dist/markdown-it-sup.js';
  * esm generated
  */
 import { default as markdownItPlantuml } from '../esm-bundle/markdown-it-plantuml-bundle.js';
+import { default as markdownItHighlightjs } from '../esm-bundle/markdown-it-highlightjs-bundle.js';
 
 /*import mdRegex        from 'markdown-it-regexp/index.js';
 import mdPdf          from 'markdown-it-pdf/index.js';
@@ -86,6 +87,8 @@ export class MarkdownRenderer {
                 }
             }
         });
+
+        this.md.use(markdownItHighlightjs);
 
         this.md.use( markdownItPlantuml, {
             imageFormat: 'svg'

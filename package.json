@@ -1,5 +1,5 @@
 {
-  "name": "@deiv/mark-up",
+  "name": "@deiv/mark-up-element",
   "version": "1.0.0",
   "author": "David Suárez <david.sephirot@gmail.com>",
   "main": "bundle/mark-up-element.js",
@@ -12,11 +12,12 @@
   ],
   "scripts": {
     "start": "polymer serve",
-    "build": "rimraf bundle && rollup -c",
-    "clean": "rimraf bundle"
+    "build": "rimraf bundle && rimraf src/esm-bundle && rollup -c",
+    "clean": "rimraf bundle && rimraf src/esm-bundle"
   },
   "dependencies": {
     "chart.js": "^2.8.0",
+    "codemirror": "^5.48.2",
     "lit-element": "^2.2.0",
     "markdown-it": "^9.0.1",
     "markdown-it-abbr": "^1.0.4",
@@ -25,6 +26,7 @@
     "markdown-it-chart": "^0.2.0",
     "markdown-it-container": "^2.0.0",
     "markdown-it-footnote": "^3.0.2",
+    "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-imsize": "^2.0.1",
     "markdown-it-mark": "^2.0.0",
     "markdown-it-pdf": "^1.0.0",

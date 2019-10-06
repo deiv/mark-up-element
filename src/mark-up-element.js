@@ -37,6 +37,17 @@ import { default as Chart } from './esm-bundle/chartjs-bundle.js';
 
 export class MarkUpElement extends LitElement {
 
+    static get properties() {
+        return {
+            content: {
+                type: String,
+                reflect: false,
+                attribute: false,
+                value: ""
+            }
+        }
+    }
+
     static get elementStyles() {
         return css`
             :host {
@@ -44,17 +55,11 @@ export class MarkUpElement extends LitElement {
                 overflow: auto;
                 height: var(--mark-up-element-preview-height);
             }
-        `;
-    }
-
-    static get properties() {
-        return {
-            value: {
-                type: String,
-                reflect: false,
-                value: ""
+            
+            #content-viewer {
+                height: 100%;
             }
-        }
+        `;
     }
 
     static get styles() {
@@ -64,31 +69,35 @@ export class MarkUpElement extends LitElement {
         ];
     }
 
-    set value(val) {
-        let oldValue = this._value;
+    set content(val) {
+        let oldContent = this._content;
 
-        this._value = html`${unsafeHTML(this.renderer.render(val))}`;
-
-        this.requestUpdate('value', oldValue);
+        this._content = html`${unsafeHTML(this.renderer.render(val))}`;
+        this.requestUpdate('content', oldContent);
     }
 
-    get value() {
-        return this._value;
+    get content() {
+        return this._content;
     }
 
     constructor() {
         super();
 
-        this._value = null;
         this.renderer = new MarkdownRenderer();
     }
 
+    /*
+     * XXX: TODO: ahora mismo estamos renderizando en cada cambio del contenido:
+     *       - Dejar de hacerlo y actualizar el contenido dinamicamente ...
+     *       - No renderizar continueamente al cambiar el contenido ...
+     */
     render() {
         return html`
             <link href="../node_modules/chart.js/dist/Chart.css" rel="stylesheet" />
+            <link href="../node_modules/highlight.js/styles/github.css" rel="stylesheet" />
             
             <div id="content-viewer" class="markdown-contents">
-                ${this._value}
+                ${this._content}
             </div>
         `;
     }

@@ -1,3 +1,4 @@
+
 import resolve from 'rollup-plugin-node-resolve';
 import common from 'rollup-plugin-commonjs';
 
@@ -22,7 +23,17 @@ export default [{
             common(),
             resolve()
         ]
-    },{
+    }, {
+        input: 'markdown-it-highlightjs/index.js',
+        output: {
+            file: 'src/esm-bundle/markdown-it-highlightjs-bundle.js',
+            format: 'esm'
+        },
+        plugins: [
+            common(),
+            resolve()
+        ]
+    }, {
         input: ['src/mark-up-element.js'],
         output: {
             file: 'bundle/mark-up-element.js',
@@ -39,6 +50,17 @@ export default [{
             file: 'bundle/mark-up-editor-element.js',
             format: 'umd',
             name: 'mark-up-editor-element',
+            sourcemap: true
+        },
+        plugins: [
+            resolve()
+        ]
+    }, {
+        input: ['src/codemirror-editor-element.js'],
+        output: {
+            file: 'bundle/codemirror-editor-element.js',
+            format: 'umd',
+            name: 'codemirror-editor-element',
             sourcemap: true
         },
         plugins: [
