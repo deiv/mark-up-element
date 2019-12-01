@@ -32,7 +32,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { SharedStyles} from "./shared-styles";
 import { MarkdownRenderer } from './renderer/markdown-renderer';
 
-import { default as Chart } from './esm-bundle/chartjs-bundle.js';
+import { default as Chart } from './esm-bundle/chartjs-esm.js';
 
 
 export class MarkUpElement extends LitElement {

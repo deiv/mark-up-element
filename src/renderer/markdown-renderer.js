@@ -26,25 +26,24 @@
  *
  */
 
-import 'markdown-it/dist/markdown-it.js';
+import { default as MarkdownIt } from '../esm-bundle/markdown-it-esm.js';
 
 import { default as mdTaskList } from './plugins/markdown-it-tasks-list.js';
 import { default as mdAnchor } from 'markdown-it-anchor/index.js';
 import { default as mdCharts } from 'markdown-it-chart/src/index.js';
 import { default as mdToc } from 'markdown-it-toc-done-right/index.js';
 
-import 'markdown-it-abbr/dist/markdown-it-abbr.js';
-import 'markdown-it-center-text/dist/markdown-it-center-text.js';
-import 'markdown-it-container/dist/markdown-it-container.js';
-import 'markdown-it-footnote/dist/markdown-it-footnote.js';
-import 'markdown-it-mark/dist/markdown-it-mark.js';
-import 'markdown-it-sup/dist/markdown-it-sup.js';
-
 /*
  * esm generated
  */
-import { default as markdownItPlantuml } from '../esm-bundle/markdown-it-plantuml-bundle.js';
-import { default as markdownItHighlightjs } from '../esm-bundle/markdown-it-highlightjs-bundle.js';
+import { default as markdownItAbbr } from '../esm-bundle/markdown-it-abbr-esm.js';
+import { default as markdownItCenterText } from '../esm-bundle/markdown-it-center-text-esm.js';
+import { default as markdownItContainer } from '../esm-bundle/markdown-it-container-esm.js';
+import { default as markdownItFootnote } from '../esm-bundle/markdown-it-footnote-esm.js';
+import { default as markdownItMark } from '../esm-bundle/markdown-it-mark-esm.js';
+import { default as markdownItSup } from '../esm-bundle/markdown-it-sup-esm.js';
+import { default as markdownItPlantuml } from '../esm-bundle/markdown-it-plantuml-esm.js';
+import { default as markdownItHighlightjs } from '../esm-bundle/markdown-it-highlightjs-esm.js';
 
 /*import mdRegex        from 'markdown-it-regexp/index.js';
 import mdPdf          from 'markdown-it-pdf/index.js';
@@ -54,22 +53,22 @@ import mdVideo        from 'markdown-it-video/index.js';*/
 export class MarkdownRenderer {
 
     constructor() {
-        this.md = markdownit();
+        this.md = new MarkdownIt();
 
         this.md.use(mdTaskList);
         this.md.use(mdAnchor);
         this.md.use(mdCharts);
         this.md.use(mdToc);
 
-        this.md.use(markdownitAbbr);
-        this.md.use(markdownitCentertext);
-        this.md.use(markdownitFootnote);
-        this.md.use(markdownitMark);
-        this.md.use(markdownitSup);
+        this.md.use(markdownItAbbr);
+        this.md.use(markdownItCenterText);
+        this.md.use(markdownItFootnote);
+        this.md.use(markdownItMark);
+        this.md.use(markdownItSup);
 
         const md2 = this.md;
 
-        this.md.use(markdownitContainer, 'expander', {
+        this.md.use(markdownItContainer, 'expander', {
             validate: function(params) {
                 return params.trim().match(/^expander\s+(.*)$/);
             },
