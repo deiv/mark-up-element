@@ -38,6 +38,20 @@
             </template>
         </demo-snippet>
 
+        <h3>mark-up-element: HTML viewer</h3>
+        <demo-snippet>
+            <template>
+                <mark-up-element id="htmlViewer">
+                </mark-up-element>
+
+                <script>
+                    customElements.whenDefined('mark-up-element').then(() => {
+                        document.querySelector('#htmlViewer').htmlContent = '<h1 id="a-header">A Header</h1><p>A paragraph</p><h2 id="a-level-2-heading">A level 2 heading</h2>';
+                    });
+                </script>
+            </template>
+        </demo-snippet>
+
         <h3>mark-up-editor-element</h3>
         <demo-snippet>
             <template>

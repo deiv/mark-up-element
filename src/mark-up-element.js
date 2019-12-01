@@ -80,6 +80,13 @@ export class MarkUpElement extends LitElement {
         return this._content;
     }
 
+    set htmlContent(val) {
+        let oldContent = this._content;
+
+        this._content = html`${unsafeHTML(val)}`;
+        this.requestUpdate('content', oldContent);
+    }
+
     constructor() {
         super();
 
